@@ -1,0 +1,8 @@
+pyspark-env/
+.venv/
+__pycache__/
+data/
+*.parquet
+*.csv
+.DS_Store
+
