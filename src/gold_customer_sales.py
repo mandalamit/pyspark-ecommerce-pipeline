@@ -1,11 +1,15 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import sum, count
 
-spark = SparkSession.builder \
-    .appName("Gold-Customer-Sales") \
-    .config("spark.driver.memory", "4g") \
-    .config("spark.sql.shuffle.partitions", "8") \
-    .getOrCreate()
+from config.spark_config import get_spark
+
+
+spark = get_spark('Gold-Customer-Sales')
+# spark = SparkSession.builder \
+#     .appName("Gold-Customer-Sales") \
+#     .config("spark.driver.memory", "4g") \
+#     .config("spark.sql.shuffle.partitions", "8") \
+#     .getOrCreate()
 
 customers = spark.read.parquet("data/silver/customers")
 orders = spark.read.parquet("data/silver/orders")

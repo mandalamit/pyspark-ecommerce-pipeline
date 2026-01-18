@@ -2,11 +2,15 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, row_number
 from pyspark.sql.window import Window
 
-spark = SparkSession.builder \
-    .appName("Silver-Customers") \
-    .config("spark.driver.memory", "4g") \
-    .config("spark.sql.shuffle.partitions", "8") \
-    .getOrCreate()
+from config.spark_config import get_spark
+
+spark = get_spark('Silver-Customers')
+
+# spark = SparkSession.builder \
+#     .appName("Silver-Customers") \
+#     .config("spark.driver.memory", "4g") \
+#     .config("spark.sql.shuffle.partitions", "8") \
+#     .getOrCreate()
 
 # Read from Bronze
 df_bronze = spark.read.parquet("data/bronze/customers")

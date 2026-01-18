@@ -1,10 +1,14 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder \
-    .appName("Orders-Ingestion") \
-    .config("spark.driver.memory", "4g") \
-    .config("spark.sql.shuffle.partitions", "8") \
-    .getOrCreate()
+from config.spark_config import get_spark
+
+spark = get_spark('Orders-Ingestion')
+
+# spark = SparkSession.builder \
+#     .appName("Orders-Ingestion") \
+#     .config("spark.driver.memory", "4g") \
+#     .config("spark.sql.shuffle.partitions", "8") \
+#     .getOrCreate()
 
 # Sample orders data (simulate raw data)
 data = [

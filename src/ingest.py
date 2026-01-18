@@ -1,11 +1,15 @@
 from pyspark.sql import SparkSession
 
+from config.spark_config import get_spark
+
 # Create Spark session
-spark = SparkSession.builder \
-    .appName("Ecommerce-Ingestion") \
-    .config("spark.driver.memory", "4g") \
-    .config("spark.sql.shuffle.partitions", "8") \
-    .getOrCreate()
+spark = get_spark('Ecommerce-Ingestion')
+
+# spark = SparkSession.builder \
+#     .appName("Ecommerce-Ingestion") \
+#     .config("spark.driver.memory", "4g") \
+#     .config("spark.sql.shuffle.partitions", "8") \
+#     .getOrCreate()
 
 print("Spark session created successfully")
 
